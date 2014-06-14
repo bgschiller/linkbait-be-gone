@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Linkbait Be Gone Options</title>
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+<style>
+* {
+  font-family:Helvetica;
+}
+.section-title{
+  color:#646464;
+}
+.linkbait-url{
+  font-size:16px;
+}
+#inner{
+  padding-top:90px;
+  width:50%;
+  margin: 0 auto;
+}
+#linkrow-template{
+  display:none;
+}
+.header-title{
+    font-size:25px;
+    color:#646464;
+    -webkit-font-smoothing: antialiased;
+    display:inline-block;
+    position: relative;
+    left: 10px;
+    bottom: -10px;
+}
+</style>
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <div class="navbar-left">
+          <div class="header-title">
+            Linkbait Be Gone &mdash; Options
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="inner">
+  <h3 class="section-title">Filtered Sites</h3>
+  <table class="table" id="linkbait-table">
+    <tbody id="linkbait-table-body">
+      <tr id="user-entry-row">
+        <td>
+          <input type="text" class="form-control" placeholder="linkbait.com">
+        </td>
+        <td>
+          <button type="button" class="close" aria-hidden="true">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div id="status"></div>
+  <button type="button" class="btn btn-primary pull-right" id="save-button">Save</button>
+</div>
+<script src="options.js"></script>
+</body>
+</html>
