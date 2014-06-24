@@ -17,7 +17,7 @@ function save_options() {
     status.textContent = 'Options saved.';
     setTimeout(function() {
       status.textContent = '';
-    }, 750);
+    }, 1000);
   });
 }
 
@@ -43,13 +43,39 @@ function add_linkbait_link(link){
       template = linkrow_template.replace('LINKBAIT_URL',link),
       row = document.createElement('tr');
   row.innerHTML = template;
+  //row.id = 'r' + row_id_count++;
   table.insertBefore(row,
     document.getElementById('user-entry-row'));
+
+  //make sure all the rows have remove listeners
+  var rows = document.getElementsByClassName('remove-row');
+  for(var ix=0; ix < rows.length; ix++){
+    rows[ix].onclick = remove_linkbait_link;
+  }
 }
 
-var linkrow_template = '<td><span class="linkbait-url">LINKBAIT_URL</span></td><td><button type="button" class="close" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button></td>';
+function remove_linkbait_link(){
+  var row = this.parentNode.parentNode;
+  row.parentNode.removeChild(row);
+}
+
+function add_user_entry_text(){
+  var link = document.getElementById('user-entry').value;
+  if (link){
+    add_linkbait_link(link);
+  }
+  document.getElementById('user-entry').value = "";
+}
+
+var linkrow_template = '<td><span class="linkbait-url">LINKBAIT_URL</span></td><td><button type="button" class="close remove-row" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button></td>';
 var parser = new DOMParser();
 
 document.addEventListener('DOMContentLoaded', restore_options);
-document.getElementById('save-button').addEventListener('click',
-    save_options);
+document.getElementById('save-button').onclick = save_options;
+document.getElementById('add-button').onclick = add_user_entry_text;
+document.getElementById('user-entry').onkeydown = function(evt){
+  var keyCode = evt ? (evt.which ? evt.which : evt.keyCode) : event.keyCode;
+  if (keyCode == 13){
+    add_user_entry_text();
+  }
+};
